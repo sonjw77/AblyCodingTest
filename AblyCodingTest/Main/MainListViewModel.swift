@@ -24,6 +24,8 @@ class MainListViewModel {
         getFirstList()
     }
     
+    //MARK: - GET 함수
+    
     /**
      리스트 불러오기 제일 처음에 호출
      */
@@ -57,23 +59,28 @@ class MainListViewModel {
      배너 아이템 반환
      */
     func getBannerItem(index: Int) -> ListModel.Banners {
-        return bannerList?[index] ?? ListModel.Banners(JSON: ["id":"-1","image":""])!
+        bannerList?[index] ?? ListModel.Banners(JSON: ["id":"-1","image":""])!
+    }
+    
+    /**
+     배너 아이템 갯수 반환
+     */
+    func getBannerItemCount() -> Int {
+        bannerList?.count ?? 0
     }
     
     /**
      리스트 아이템 반환
      */
     func getListItem(index: Int) -> ListModel.Goods {
-        return goodsList?[index] ?? ListModel.Goods(JSON: ["id":"-1","name":"","image":""])!
+        goodsList?[index] ?? ListModel.Goods(JSON: ["id":"-1","name":"","image":""])!
     }
     
     /**
-     마지막 페이지 체크
+     리스트 아이템 갯수 반환
      */
-    func checkLastPage() {
-        if listModel?.goods?.count == 0 {
-            isLastPage = true
-        }
+    func getListItemCount() -> Int {
+        goodsList?.count ?? 0
     }
     
     /**
@@ -85,5 +92,15 @@ class MainListViewModel {
             param["lastId"] = lastID
         }
         return param
+    }
+    
+    // MARK: - ETC
+    /**
+     마지막 페이지 체크
+     */
+    func checkLastPage() {
+        if listModel?.goods?.count == 0 {
+            isLastPage = true
+        }
     }
 }

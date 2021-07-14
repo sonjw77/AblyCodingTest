@@ -28,7 +28,7 @@
 		E194C44A269D336500996851 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C449269D336500996851 /* AppColor.swift */; };
 		E194C44C269D35AA00996851 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C44B269D35AA00996851 /* Utils.swift */; };
 		E194C44E269D741500996851 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C44D269D741500996851 /* BannerCollectionViewCell.swift */; };
-		E194C450269D742700996851 /* MainListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C44F269D742700996851 /* MainListCollectionViewCell.swift */; };
+		E194C450269D742700996851 /* MainListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C44F269D742700996851 /* MainListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		E194C449269D336500996851 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		E194C44B269D35AA00996851 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E194C44D269D741500996851 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		E194C44F269D742700996851 /* MainListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListCollectionViewCell.swift; sourceTree = "<group>"; };
+		E194C44F269D742700996851 /* MainListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListTableViewCell.swift; sourceTree = "<group>"; };
 		F73BCDDF5079A744A97FCD63 /* Pods-AblyCodingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AblyCodingTest.debug.xcconfig"; path = "Target Support Files/Pods-AblyCodingTest/Pods-AblyCodingTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,7 +192,7 @@
 				E194C441269D311100996851 /* MainLitView.swift */,
 				E194C443269D312200996851 /* MainListViewModel.swift */,
 				E194C44D269D741500996851 /* BannerCollectionViewCell.swift */,
-				E194C44F269D742700996851 /* MainListCollectionViewCell.swift */,
+				E194C44F269D742700996851 /* MainListTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -484,7 +484,7 @@
 				E194C442269D311100996851 /* MainLitView.swift in Sources */,
 				E194C43E269D30A600996851 /* ListAPI.swift in Sources */,
 				E194C406269D25D000996851 /* SceneDelegate.swift in Sources */,
-				E194C450269D742700996851 /* MainListCollectionViewCell.swift in Sources */,
+				E194C450269D742700996851 /* MainListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

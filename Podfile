@@ -8,12 +8,13 @@ target 'AblyCodingTest' do
   # Pods for AblyCodingTest
 
   pod 'Alamofire'
-  pod 'AlamofireImage'
+#  pod 'AlamofireImage'
   pod 'ObjectMapper'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RealmSwift'
   pod 'SnapKit'
+  pod 'SDWebImage'
 
   target 'AblyCodingTestTests' do
     inherit! :search_paths

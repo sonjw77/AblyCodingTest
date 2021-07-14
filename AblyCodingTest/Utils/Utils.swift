@@ -29,4 +29,15 @@ class Utils {
     static func getSafeLayoutInsets() -> UIEdgeInsets {
         return UIApplication.shared.windows.first?.safeAreaInsets ?? UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
     }
+    
+    /**
+     int to  comma string
+     */
+    static func getCommaNumber(_ value:Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let result = numberFormatter.string(from: NSNumber(value:value))!
+        
+        return result
+    }
 }

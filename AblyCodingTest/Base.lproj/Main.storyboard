@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k3h-K2-8a8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,14 +12,15 @@
         <!--좋아요-->
         <scene sceneID="64G-AR-RcQ">
             <objects>
-                <viewController storyboardIdentifier="FavoriteListViewController" id="plH-r7-0Vq" customClass="FavoriteListViewController" customModule="AblyCodingTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteListViewController" title="좋아요" id="plH-r7-0Vq" customClass="FavoriteListViewController" customModule="AblyCodingTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ggw-t1-tYF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Kfn-rS-4oq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="좋아요" id="TdA-PP-YAH"/>
+                    <tabBarItem key="tabBarItem" title="좋아요" image="iconZzim" id="TdA-PP-YAH"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xoL-dD-XEX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -27,16 +29,17 @@
         <!--홈-->
         <scene sceneID="Bs3-W5-SN6">
             <objects>
-                <viewController storyboardIdentifier="MainListViewController" id="GGv-BX-dHG" customClass="MainListViewController" customModule="AblyCodingTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainListViewController" title="홈" id="GGv-BX-dHG" customClass="MainListViewController" customModule="AblyCodingTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dQ9-Wb-i8U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="HK7-pm-2nR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" id="IXr-3N-Yu0">
+                    <tabBarItem key="tabBarItem" title="홈" image="iconHome" id="IXr-3N-Yu0">
                         <color key="badgeColor" systemColor="systemRedColor"/>
                     </tabBarItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfg-ql-Zxw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,6 +66,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iconHome" width="24" height="24"/>
+        <image name="iconZzim" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

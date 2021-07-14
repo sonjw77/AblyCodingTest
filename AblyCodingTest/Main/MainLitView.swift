@@ -10,17 +10,19 @@ import SnapKit
 
 class MainLitView: UIView {
     
-    private let thumbNailCollectionView: UICollectionView = {
+    let bannerCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = AppColor.mainColor
+        collectionView.backgroundColor = .white
         return collectionView
     }()
     
-    private let listCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .yellow
-        return collectionView
+    let listTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorInset = .zero
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.register(MainListTableViewCell.self, forCellReuseIdentifier: "MainListTableViewCell")
+        return tableView
     }()
     
     func setLayout() {
@@ -28,47 +30,37 @@ class MainLitView: UIView {
             $0.top.equalTo(Utils.getSafeLayoutInsets().top)
             $0.bottom.left.right.equalTo(superview!)
         }
-        backgroundColor = .yellow
+        addSubview(listTableView)
+        listTableView.tableHeaderView = bannerCollectionView
         
-        [listCollectionView].forEach({
-            addSubview($0)
-        })
-        listCollectionView.addSubview(thumbNailCollectionView)
+        layoutUpdateBannerCollectionView()
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: Utils.getDisplayWidth(), height: 200)
-        layout.scrollDirection = .horizontal
-        thumbNailCollectionView.collectionViewLayout = layout
-        
-        let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout2.itemSize = CGSize(width: Utils.getDisplayWidth(), height: Utils.getDisplayHeight())
-        listCollectionView.collectionViewLayout = layout2
-        
-        
-        listCollectionView.snp.makeConstraints {
+        listTableView.snp.makeConstraints {
             $0.left.right.top.bottom.equalTo(self)
             $0.width.equalTo(Utils.getDisplayWidth())
         }
         
-//        thumbNailCollectionView.delegate = self
-        thumbNailCollectionView.dataSource = self
-        thumbNailCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
-        thumbNailCollectionView.snp.makeConstraints {
+        bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
+        bannerCollectionView.frame = CGRect(x: 0, y: 0, width: Utils.getDisplayWidth(), height: 200)
+        bannerCollectionView.snp.makeConstraints {
             $0.left.right.equalTo(self)
             $0.width.equalTo(Utils.getDisplayWidth())
             $0.height.equalTo(200)
         }
     }
-}
-
-// MARK: - UICollectionViewDataSource 델리게이트
-extension MainLitView : UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
-        return listCell
+    /**
+     배너뷰 레이아웃 갱신
+     */
+    func layoutUpdateBannerCollectionView() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: Utils.getDisplayWidth(), height: 200)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        bannerCollectionView.collectionViewLayout = layout
+        DispatchQueue.main.async {
+            self.bannerCollectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+        }
+        
     }
 }

@@ -12,15 +12,15 @@ class Utils {
     /**
      현재 단말의 width 값을 구해온다.
      */
-    static func getDisplayWidth() -> Int {
-        return Int((UIApplication.shared.windows.first?.rootViewController?.view.frame.size.width)!)
+    static func getDisplayWidth() -> CGFloat {
+        return (UIApplication.shared.windows.first?.rootViewController?.view.frame.size.width)!
     }
     
     /**
      현재 단말의 height 값을 구해온다.
      */
-    static func getDisplayHeight() -> Int {
-        return Int((UIApplication.shared.windows.first?.rootViewController?.view.frame.size.height)!)
+    static func getDisplayHeight() -> CGFloat {
+        return (UIApplication.shared.windows.first?.rootViewController?.view.frame.size.height)!
     }
 
     /**

@@ -15,15 +15,19 @@ class MainListViewController: UIViewController {
     let mainListViewModel = MainListViewModel()
     let disposeBag = DisposeBag()
     
+    var isLoading = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainListView)
         setBinding()
         mainListView.setLayout()
-//        mainListView.thumbNailCollectionView.delegate = self
+        mainListView.bannerCollectionView.delegate = self
         mainListView.bannerCollectionView.dataSource = self
         mainListView.listTableView.dataSource = self
+        mainListView.listTableView.delegate = self
         mainListViewModel.configure()
+        navigationController?.navigationBar.topItem?.title = "홈"
         // Do any additional setup after loading the view.
     }
     
@@ -33,15 +37,22 @@ class MainListViewController: UIViewController {
     }
     
     func setBinding() {
-        //리스트 불러오기
-        mainListViewModel.listSuccess.bind(onNext: {[weak self] in
+        //처음 리스트 불러오기
+        mainListViewModel.firstListSuccess.bind(onNext: {[weak self] in
             self?.mainListView.bannerCollectionView.reloadData()
             self?.mainListView.listTableView.reloadData()
+            self?.mainListView.setBannerPositon(page: "1/\(self?.mainListViewModel.bannerList?.count ?? 1)")
+        }).disposed(by: disposeBag)
+        
+        //다음 리스트 불러오기
+        mainListViewModel.nextListSuccess.bind(onNext: {[weak self] in
+            self?.mainListView.listTableView.reloadData()
+            self?.isLoading = false
         }).disposed(by: disposeBag)
     }
 }
 
-// MARK: - UICollectionViewDataSource 델리게이트
+// MARK: - UICollectionViewDataSource
 extension MainListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         mainListViewModel.getBannerItemCount()
@@ -54,7 +65,12 @@ extension MainListViewController : UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDataSource 델리게이트
+// MARK: - UICollectionViewDelegate
+extension MainListViewController : UICollectionViewDelegate {
+
+}
+
+// MARK: - UITableViewDataSource
 extension MainListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mainListViewModel.getListItemCount()
@@ -66,7 +82,27 @@ extension MainListViewController : UITableViewDataSource {
         listCell.setData(model: model)
         return listCell
     }
-    
-    
+}
+
+// MARK: - UITableViewDelegate
+extension MainListViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+// MARK: - UIScrollViewDelegate 델리게이트
+extension MainListViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        mainListView.setBannerPositon(page: "\((Int(scrollView.contentOffset.x) / Int(Utils.getDisplayWidth())) + 1)/\(mainListViewModel.bannerList?.count ?? 1)")
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if Int(scrollView.contentOffset.y) % 10 == 0 && mainListViewModel.isLastPage == false {
+            if mainListView.listTableView.indexPath(for: mainListView.listTableView.visibleCells.last ?? UITableViewCell())?.row ?? 0 > ((mainListViewModel.getListItemCount() ) - 3)  && isLoading == false {
+                isLoading = true
+                mainListViewModel.getNextList()
+            }
+        }
+    }
 }
 

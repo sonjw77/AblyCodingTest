@@ -11,11 +11,12 @@ class MainListViewModel {
 
     let listAPI = ListAPI()
     let disposeBag = DisposeBag()
-    let listSuccess = PublishSubject<Void>()
+    let firstListSuccess = PublishSubject<Void>()
+    let nextListSuccess = PublishSubject<Void>()
     var listModel: ListModel?
     var bannerList: [ListModel.Banners]?
     var goodsList: [ListModel.Goods]?
-    var lastID = ""
+    var lastID = -1
     var isLastPage = false
     /**
      초기 셋팅
@@ -30,27 +31,27 @@ class MainListViewModel {
      리스트 불러오기 제일 처음에 호출
      */
     func getFirstList() {
-        listAPI.getList(param: getParam()) {[weak self] (isSuccess , model , apiType) in
+        listAPI.getList() {[weak self] (isSuccess , model , apiType) in
             if isSuccess {
                 self?.listModel = model
                 self?.bannerList = self?.listModel?.banners
                 self?.goodsList = self?.listModel?.goods
                 self?.checkLastPage()
-                self?.listSuccess.onNext(())
+                self?.firstListSuccess.onNext(())
             }
         }
     }
     
     /**
-     리스트 불러오기 제일 처음에 호출
+     다음 리스트 불러오기
      */
     func getNextList() {
-        listAPI.getList(param: getParam()) {[weak self] (isSuccess , model , apiType) in
+        listAPI.getNextList(param: getParam()) {[weak self] (isSuccess , model , apiType) in
             if isSuccess {
                 self?.listModel = model
                 self?.goodsList?.append(contentsOf: self?.listModel?.goods ?? [ListModel.Goods]())
                 self?.checkLastPage()
-                self?.listSuccess.onNext(())
+                self?.nextListSuccess.onNext(())
             }
         }
     }
@@ -88,7 +89,7 @@ class MainListViewModel {
      */
     func getParam() -> Dictionary<String,Any> {
         var param: [String: Any] = [:]
-        if lastID != "" {
+        if lastID != -1 {
             param["lastId"] = lastID
         }
         return param
@@ -101,6 +102,8 @@ class MainListViewModel {
     func checkLastPage() {
         if listModel?.goods?.count == 0 {
             isLastPage = true
+        } else {
+            lastID = listModel?.goods?.last?.id ?? -1
         }
     }
 }

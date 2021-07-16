@@ -10,9 +10,7 @@ import UIKit
 class FavoriteListView: UIView {
 
     var listTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.separatorInset = .zero
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        let tableView = UITableView()
         tableView.register(MainListTableViewCell.self, forCellReuseIdentifier: "MainListTableViewCell")
         return tableView
     }()
@@ -23,6 +21,7 @@ class FavoriteListView: UIView {
             $0.bottom.left.right.equalTo(superview!)
         }
         addSubview(listTableView)
+        listTableView.separatorStyle = .none
         listTableView.snp.makeConstraints {
             $0.left.right.top.bottom.equalTo(self)
             $0.width.equalTo(Utils.getDisplayWidth())

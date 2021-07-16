@@ -17,7 +17,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    // MARK: UI 만들기
+    /**
+     init 및 UI 셋팅
+     */
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imageView)
@@ -33,6 +35,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+     데이터 입력
+     */
     func setData(url: String) {
         if url == "" {
             imageView.image = UIImage.init(systemName: "exclamationmark")

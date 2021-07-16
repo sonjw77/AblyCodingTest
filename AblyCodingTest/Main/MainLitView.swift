@@ -23,9 +23,7 @@ class MainLitView: UIView {
     }()
     
     var listTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.separatorInset = .zero
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        let tableView = UITableView()
         tableView.register(MainListTableViewCell.self, forCellReuseIdentifier: "MainListTableViewCell")
         return tableView
     }()
@@ -49,6 +47,7 @@ class MainLitView: UIView {
             $0.bottom.left.right.equalTo(superview!)
         }
         addSubview(listTableView)
+        listTableView.separatorStyle = .none
         listTableView.tableHeaderView = bannerView
         listTableView.refreshControl = refreshControl
         bannerView.frame = CGRect(x: 0, y: 0, width: Utils.getDisplayWidth(), height: Utils.getDisplayWidth() * CGFloat(0.7))

@@ -64,7 +64,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="8Pt-zS-MdZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gt8-gU-zEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController id="k3h-K2-8a8" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="zRo-ki-1dL"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -79,6 +78,7 @@
                         <segue destination="plH-r7-0Vq" kind="relationship" relationship="viewControllers" id="fZD-in-Z8V"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gt8-gU-zEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="334" y="68"/>
         </scene>

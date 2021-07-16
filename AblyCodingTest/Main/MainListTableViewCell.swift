@@ -69,14 +69,22 @@ class MainListTableViewCell: UITableViewCell {
         return button
     }()
     
+    var seperateLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.lightTextColor
+        return view
+    }()
+    
     var disposeBag = DisposeBag()
     
-    // MARK: UI 만들기
+    /**
+     init 및 UI 셋팅
+     */
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         contentView.isUserInteractionEnabled = false
-        [thumbnailImageView,discountLabel,priceLabel,descriptionLabel,newImageView,purchaseCountLabel,favoriteButton].forEach {
+        [thumbnailImageView,discountLabel,priceLabel,descriptionLabel,newImageView,purchaseCountLabel,favoriteButton,seperateLineView].forEach {
             addSubview($0)
         }
         
@@ -124,6 +132,12 @@ class MainListTableViewCell: UITableViewCell {
             $0.right.equalTo(thumbnailImageView.snp.right).offset(-8)
             $0.width.height.equalTo(24)
         }
+        
+        seperateLineView.snp.makeConstraints {
+            $0.bottom.equalTo(snp.bottom)
+            $0.left.right.equalTo(self)
+            $0.height.equalTo(0.5)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -143,6 +157,9 @@ class MainListTableViewCell: UITableViewCell {
         return Int(percent)
     }
     
+    /**
+     데이터 입력
+     */
     func setData(model: ListModel.Goods, isShowFavoriteButton: Bool) {
         if model.image == "" {
             thumbnailImageView.image = UIImage.init(systemName: "exclamationmark")
@@ -203,6 +220,9 @@ class MainListTableViewCell: UITableViewCell {
         favoriteButton.isSelected = SaveManager.sharedInstance().isExistItem(id: model.id ?? 0)
     }
     
+    /**
+     버튼 클릭 했을때 버튼 변화
+     */
     func changeFavoriteButton(_ isSelect: Bool) {
         favoriteButton.isSelected = isSelect
         UIView.animate(withDuration: 0.2, animations: {

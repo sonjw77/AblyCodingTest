@@ -18,6 +18,7 @@ class MainListViewModel {
     var goodsList: [ListModel.Goods]?
     var lastID = -1
     var isLastPage = false
+    
     /**
      초기 셋팅
      */

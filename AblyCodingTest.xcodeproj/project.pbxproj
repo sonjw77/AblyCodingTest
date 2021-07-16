@@ -10,6 +10,8 @@
 		3BCCF000D29E9F5C1221C9C0 /* Pods_AblyCodingTest_AblyCodingTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB9B7F04936C2368BD41056 /* Pods_AblyCodingTest_AblyCodingTestUITests.framework */; };
 		9AE420D29353E3FBAFCCD74E /* Pods_AblyCodingTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F55D336576DE1BD12E98CD /* Pods_AblyCodingTestTests.framework */; };
 		A7BC79E375B9958A1666B633 /* Pods_AblyCodingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D63C508211222FCA675C614 /* Pods_AblyCodingTest.framework */; };
+		E17247F126A15DE800D91C3F /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17247F026A15DE800D91C3F /* SaveManager.swift */; };
+		E17247F326A16EA700D91C3F /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17247F226A16EA700D91C3F /* FavoriteListView.swift */; };
 		E194C404269D25D000996851 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C403269D25D000996851 /* AppDelegate.swift */; };
 		E194C406269D25D000996851 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C405269D25D000996851 /* SceneDelegate.swift */; };
 		E194C408269D25D000996851 /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194C407269D25D000996851 /* MainListViewController.swift */; };
@@ -57,6 +59,8 @@
 		7A6B3BB35AB211D2A16A4F85 /* Pods-AblyCodingTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AblyCodingTest.release.xcconfig"; path = "Target Support Files/Pods-AblyCodingTest/Pods-AblyCodingTest.release.xcconfig"; sourceTree = "<group>"; };
 		7F6C852C355C731C6FCE3A60 /* Pods-AblyCodingTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AblyCodingTestTests.release.xcconfig"; path = "Target Support Files/Pods-AblyCodingTestTests/Pods-AblyCodingTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C17554FE6FDF124474DFBE79 /* Pods-AblyCodingTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AblyCodingTestTests.debug.xcconfig"; path = "Target Support Files/Pods-AblyCodingTestTests/Pods-AblyCodingTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E17247F026A15DE800D91C3F /* SaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		E17247F226A16EA700D91C3F /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		E194C400269D25D000996851 /* AblyCodingTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AblyCodingTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E194C403269D25D000996851 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E194C405269D25D000996851 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E17247EF269FE31600D91C3F /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		E194C3F7269D25D000996851 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +162,7 @@
 		E194C402269D25D000996851 /* AblyCodingTest */ = {
 			isa = PBXGroup;
 			children = (
+				E17247EF269FE31600D91C3F /* New Group */,
 				E194C436269D2E0000996851 /* Network */,
 				E194C434269D2DE700996851 /* Utils */,
 				E194C435269D2DF200996851 /* Favorite */,
@@ -201,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				E194C44B269D35AA00996851 /* Utils.swift */,
+				E17247F026A15DE800D91C3F /* SaveManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -209,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				E194C439269D2F0300996851 /* FavoriteListViewController.swift */,
+				E17247F226A16EA700D91C3F /* FavoriteListView.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -482,6 +496,8 @@
 				E194C440269D30E000996851 /* ListModel.swift in Sources */,
 				E194C44C269D35AA00996851 /* Utils.swift in Sources */,
 				E194C442269D311100996851 /* MainLitView.swift in Sources */,
+				E17247F126A15DE800D91C3F /* SaveManager.swift in Sources */,
+				E17247F326A16EA700D91C3F /* FavoriteListView.swift in Sources */,
 				E194C43E269D30A600996851 /* ListAPI.swift in Sources */,
 				E194C406269D25D000996851 /* SceneDelegate.swift in Sources */,
 				E194C450269D742700996851 /* MainListTableViewCell.swift in Sources */,

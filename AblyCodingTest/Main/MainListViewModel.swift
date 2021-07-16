@@ -106,4 +106,14 @@ class MainListViewModel {
             lastID = listModel?.goods?.last?.id ?? -1
         }
     }
+    
+    /**
+     pull to refresh 일때 데이터 초기화
+     */
+    func resetData() {
+        bannerList?.removeAll()
+        goodsList?.removeAll()
+        isLastPage = false
+        lastID = -1
+    }
 }

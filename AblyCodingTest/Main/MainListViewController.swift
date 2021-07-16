@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class MainListViewController: UIViewController {
 
@@ -27,8 +28,13 @@ class MainListViewController: UIViewController {
         mainListView.listTableView.dataSource = self
         mainListView.listTableView.delegate = self
         mainListViewModel.configure()
-        navigationController?.navigationBar.topItem?.title = "홈"
+        mainListView.refreshControl.addTarget(self, action: #selector(refreshList(_:)), for: .valueChanged)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.topItem?.title = "홈"
     }
     
     override func viewWillLayoutSubviews() {
@@ -42,6 +48,8 @@ class MainListViewController: UIViewController {
             self?.mainListView.bannerCollectionView.reloadData()
             self?.mainListView.listTableView.reloadData()
             self?.mainListView.setBannerPositon(page: "1/\(self?.mainListViewModel.bannerList?.count ?? 1)")
+            self?.mainListView.refreshControl.endRefreshing()
+            self?.mainListView.bannerCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }).disposed(by: disposeBag)
         
         //다음 리스트 불러오기
@@ -49,6 +57,11 @@ class MainListViewController: UIViewController {
             self?.mainListView.listTableView.reloadData()
             self?.isLoading = false
         }).disposed(by: disposeBag)
+    }
+    
+    @objc func refreshList(_ sender: Any) {
+        mainListViewModel.resetData()
+        mainListViewModel.getFirstList()
     }
 }
 
@@ -79,7 +92,12 @@ extension MainListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let listCell = tableView.dequeueReusableCell(withIdentifier: "MainListTableViewCell", for: indexPath) as! MainListTableViewCell
         let model = mainListViewModel.getListItem(index: indexPath.row)
-        listCell.setData(model: model)
+        listCell.setData(model: model, isShowFavoriteButton: true)
+        listCell.favoriteButton.rx.tap.asDriver().drive(onNext:{
+            let isSelect = !listCell.favoriteButton.isSelected
+            listCell.changeFavoriteButton(isSelect)
+            SaveManager.sharedInstance().checkItem(model: model, isFavorite: isSelect)
+        }).disposed(by: listCell.disposeBag)
         return listCell
     }
 }

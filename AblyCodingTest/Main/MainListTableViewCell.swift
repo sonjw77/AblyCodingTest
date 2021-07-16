@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MainListTableViewCell: UITableViewCell {
     
@@ -61,11 +62,21 @@ class MainListTableViewCell: UITableViewCell {
         return label
     }()
     
+    var favoriteButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "iconZzim"), for: .normal)
+        button.setImage(UIImage(named: "iconZzimActive"), for: .selected)
+        return button
+    }()
+    
+    var disposeBag = DisposeBag()
+    
     // MARK: UI 만들기
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        [thumbnailImageView,discountLabel,priceLabel,descriptionLabel,newImageView,purchaseCountLabel].forEach {
+        contentView.isUserInteractionEnabled = false
+        [thumbnailImageView,discountLabel,priceLabel,descriptionLabel,newImageView,purchaseCountLabel,favoriteButton].forEach {
             addSubview($0)
         }
         
@@ -107,10 +118,21 @@ class MainListTableViewCell: UITableViewCell {
             $0.left.equalTo(newImageView.snp.right).offset(5)
             $0.centerY.equalTo(newImageView)
         }
+        
+        favoriteButton.snp.makeConstraints {
+            $0.top.equalTo(thumbnailImageView.snp.top).offset(8)
+            $0.right.equalTo(thumbnailImageView.snp.right).offset(-8)
+            $0.width.height.equalTo(24)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     /**
@@ -121,7 +143,7 @@ class MainListTableViewCell: UITableViewCell {
         return Int(percent)
     }
     
-    func setData(model: ListModel.Goods) {
+    func setData(model: ListModel.Goods, isShowFavoriteButton: Bool) {
         if model.image == "" {
             thumbnailImageView.image = UIImage.init(systemName: "exclamationmark")
         } else {
@@ -177,5 +199,16 @@ class MainListTableViewCell: UITableViewCell {
                 $0.bottom.equalTo(snp.bottom).offset(-24)
             }
         }
+        favoriteButton.isHidden = isShowFavoriteButton ? false : true
+        favoriteButton.isSelected = SaveManager.sharedInstance().isExistItem(id: model.id ?? 0)
+    }
+    
+    func changeFavoriteButton(_ isSelect: Bool) {
+        favoriteButton.isSelected = isSelect
+        UIView.animate(withDuration: 0.2, animations: {
+            self.favoriteButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: {(_) in
+            self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
     }
 }

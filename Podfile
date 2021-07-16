@@ -15,6 +15,7 @@ target 'AblyCodingTest' do
   pod 'RealmSwift'
   pod 'SnapKit'
   pod 'SDWebImage'
+  pod 'ObjectMapper+Realm'
 
   target 'AblyCodingTestTests' do
     inherit! :search_paths

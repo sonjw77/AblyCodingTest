@@ -1,6 +1,9 @@
 PODS:
   - Alamofire (5.4.3)
-  - ObjectMapper (4.2.0)
+  - ObjectMapper (3.5.3)
+  - "ObjectMapper+Realm (1.2)":
+    - ObjectMapper
+    - RealmSwift
   - Realm (10.10.0):
     - Realm/Headers (= 10.10.0)
   - Realm/Headers (10.10.0)
@@ -20,6 +23,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - ObjectMapper
+  - "ObjectMapper+Realm"
   - RealmSwift
   - RxCocoa
   - RxSwift
@@ -30,6 +34,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - ObjectMapper
+    - "ObjectMapper+Realm"
     - Realm
     - RealmSwift
     - RxCocoa
@@ -40,7 +45,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  "ObjectMapper+Realm": 0f8d0ac5b0e87ba63d2d0bea76a111b4eae98b9a
   Realm: f501df41a4222c67850c77cf135d472192ecf294
   RealmSwift: c69aadfc7db0d60075178d037c2f34ada73d5201
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
@@ -49,6 +55,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 219ceb8170e0bacff4089c971de9e9886abf7706
+PODFILE CHECKSUM: 402775b0fb50af335c2581e3553d621ae798a846
 
 COCOAPODS: 1.10.1

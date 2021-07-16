@@ -41,6 +41,8 @@ class MainLitView: UIView {
         return label
     }()
     
+    let refreshControl = UIRefreshControl()
+    
     func setLayout() {
         snp.makeConstraints {
             $0.top.equalTo(Utils.getSafeLayoutInsets().top)
@@ -48,6 +50,7 @@ class MainLitView: UIView {
         }
         addSubview(listTableView)
         listTableView.tableHeaderView = bannerView
+        listTableView.refreshControl = refreshControl
         bannerView.frame = CGRect(x: 0, y: 0, width: Utils.getDisplayWidth(), height: Utils.getDisplayWidth() * CGFloat(0.7))
         layoutUpdateBannerCollectionView()
         
